@@ -1,0 +1,24 @@
+#! /usr/bin/python
+
+import urllib2
+import json
+import sys
+import os
+
+apiKey = os.environ.get('WEATHER_API_KEY')
+defaultCity = os.environ.get('WEATHER_DEFAULT_CITY') or 'New York City'
+
+if not apiKey:
+    print 'You must have an API key for "http://openweathermap.org/api"'
+    sys.exit(1)
+
+city = defaultCity if len(sys.argv) < 2 else ' '.join(sys.argv[1:])
+encodedCity = urllib2.quote(city)
+url = 'http://api.openweathermap.org/data/2.5/weather?q={0}&APPID={1}&units=imperial'.format(encodedCity, apiKey)
+res = json.loads(urllib2.urlopen(url).read())
+
+print 'The current weather in {0}:'.format(city)
+print
+print '    Termperature: {0}\xC2\xB0'.format(int(res['main']['temp']))
+print '    Humidity: {0}%'.format(res['main']['humidity'])
+print '    Wind Speed: {0}mph'.format(int(res['wind']['speed']))
