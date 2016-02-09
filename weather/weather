@@ -5,6 +5,10 @@ import json
 import sys
 import os
 
+# In order to keep my API key private I am setting that in my .bash_profile.
+# For this script to work you need to sign up for an API key at
+# http://openweathermap.org/register
+
 apiKey = os.environ.get('WEATHER_API_KEY')
 defaultCity = os.environ.get('WEATHER_DEFAULT_CITY') or 'New York City'
 
