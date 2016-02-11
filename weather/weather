@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 
 import urllib2
 import json
@@ -26,3 +26,4 @@ print
 print '    Termperature: {0}\xC2\xB0'.format(int(res['main']['temp']))
 print '    Humidity: {0}%'.format(res['main']['humidity'])
 print '    Wind Speed: {0}mph'.format(int(res['wind']['speed']))
+print
